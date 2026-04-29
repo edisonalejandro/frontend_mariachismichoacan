@@ -1,0 +1,30 @@
+<div class="page-hero">
+  <div class="page-hero__inner">
+    <span class="page-hero__tag">Lo que ofrecemos</span>
+    <h1>Servicios para <span>cada ocasión</span></h1>
+    <p>Mariachi profesional adaptado a cada tipo de evento especial</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="servicios-list">
+      <div class="servicio-item" *ngFor="let s of servicios; let i = index" [class.servicio-item--reverse]="i % 2 !== 0">
+        <div class="servicio-item__visual" [style.background]="s.color + '18'">
+          <span class="servicio-item__emoji">{{ s.icon }}</span>
+        </div>
+        <div class="servicio-item__body">
+          <h2 class="font-display">{{ s.nombre }}</h2>
+          <p>{{ s.desc }}</p>
+          <ul class="feature-list">
+            <li *ngFor="let f of s.features">
+              <span class="feature-check" [style.background]="s.color + '20'" [style.color]="s.color">✓</span>
+              {{ f }}
+            </li>
+          </ul>
+          <a routerLink="/contacto" class="btn btn--primary">Solicitar cotización</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

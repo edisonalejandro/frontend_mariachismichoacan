@@ -1,0 +1,45 @@
+<div class="page-hero">
+  <div class="page-hero__inner">
+    <span class="page-hero__tag">Opiniones reales</span>
+    <h1>Lo que dicen <span>nuestros clientes</span></h1>
+    <p>Miles de familias han confiado en nosotros para sus momentos más especiales</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="stats-bar">
+      <div class="stat"><strong>500+</strong><span>Eventos realizados</span></div>
+      <div class="stat"><strong>4.9/5</strong><span>Calificación promedio</span></div>
+      <div class="stat"><strong>98%</strong><span>Clientes satisfechos</span></div>
+    </div>
+
+    <div class="loading-wrap" *ngIf="loading">
+      <div class="skeleton" *ngFor="let i of [1,2,3,4,5,6]"></div>
+    </div>
+
+    <div class="testimonios-grid" *ngIf="!loading">
+      <div class="testimonio" *ngFor="let t of testimonios">
+        <div class="testimonio__header">
+          <div class="testimonio__avatar">{{ initials(t.nombre) }}</div>
+          <div>
+            <strong class="testimonio__nombre">{{ t.nombre }}</strong>
+            <span class="testimonio__evento">{{ t.evento }}</span>
+          </div>
+        </div>
+        <div class="testimonio__stars">
+          <span *ngFor="let s of stars" [class.active]="s <= t.estrellas">★</span>
+        </div>
+        <p class="testimonio__texto">"{{ t.texto }}"</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="container" style="text-align:center">
+    <h2 class="font-display" style="color:#fff;margin-bottom:0.5rem">¿Listo para tu momento especial?</h2>
+    <p style="color:rgba(255,255,255,0.7);margin-bottom:2rem">Únete a cientos de familias que ya confían en Mariachi Michoacán</p>
+    <a routerLink="/contacto" class="btn btn--secondary">Solicitar cotización gratis</a>
+  </div>
+</div>

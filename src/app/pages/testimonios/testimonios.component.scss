@@ -1,0 +1,66 @@
+.stats-bar {
+  display: flex; gap: 0; border: 1.5px solid #EDE8DF;
+  border-radius: 16px; overflow: hidden; margin-bottom: 3rem;
+  .stat {
+    flex: 1; text-align: center; padding: 1.5rem 1rem;
+    border-right: 1.5px solid #EDE8DF;
+    &:last-child { border-right: none; }
+    strong { display: block; font-size: 1.75rem; font-family: 'Playfair Display',serif; color: #C9960C; }
+    span { font-size: 0.85rem; color: #6B7280; }
+  }
+}
+
+.testimonios-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.testimonio {
+  background: #fff;
+  border: 1.5px solid #EDE8DF;
+  border-radius: 20px;
+  padding: 1.75rem;
+  transition: transform 250ms, box-shadow 250ms;
+  &:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+
+  &__header { display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; }
+  &__avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, #C9960C, #F5C842);
+    color: #0D0D1A; font-weight: 700; font-size: 0.9rem;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  &__nombre { display: block; font-weight: 700; color: #0D0D1A; font-size: 0.95rem; }
+  &__evento { font-size: 0.8rem; color: #9CA3AF; }
+  &__stars {
+    margin-bottom: 0.75rem;
+    span { color: #D1D5DB; font-size: 1.1rem;
+      &.active { color: #C9960C; }
+    }
+  }
+  &__texto { color: #6B7280; font-size: 0.92rem; line-height: 1.65; font-style: italic; }
+}
+
+.loading-wrap {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;
+  .skeleton {
+    height: 180px; border-radius: 20px;
+    background: linear-gradient(90deg, #F3F4F6 25%, #E5E7EB 50%, #F3F4F6 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+.cta-band {
+  background: linear-gradient(135deg, #0D0D1A 0%, #1A1A35 100%);
+  padding: 5rem 2rem;
+  margin-top: 4rem;
+}
+
+@media (max-width: 600px) {
+  .stats-bar { flex-direction: column;
+    .stat { border-right: none; border-bottom: 1.5px solid #EDE8DF; &:last-child { border-bottom: none; } }
+  }
+}

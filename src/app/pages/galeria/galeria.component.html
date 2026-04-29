@@ -1,0 +1,44 @@
+<div class="page-hero">
+  <div class="page-hero__inner">
+    <span class="page-hero__tag">Momentos únicos</span>
+    <h1>Nuestra <span>Galería</span></h1>
+    <p>Revive algunos de los momentos más especiales que hemos vivido junto a nuestros clientes</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+
+    <div class="filter-tabs">
+      <button class="filter-tab" *ngFor="let c of categorias"
+              [class.filter-tab--active]="categoriaActiva === c"
+              (click)="setCategoria(c)">{{ c }}</button>
+    </div>
+
+    <div class="galeria-grid" *ngIf="filtrados.length > 0">
+      <div class="galeria-item"
+           *ngFor="let item of filtrados"
+           [class.galeria-item--featured]="item.featured"
+           (click)="openLightbox(item.src.toString())">
+        <img [src]="item.src" [alt]="item.titulo" loading="lazy" />
+        <div class="galeria-item__overlay">
+          <span class="galeria-item__cat">{{ item.categoria }}</span>
+          <span class="galeria-item__titulo">{{ item.titulo }}</span>
+          <span class="galeria-item__zoom">🔍</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="galeria-empty" *ngIf="filtrados.length === 0">
+      <span>🎵</span>
+      <p>No hay elementos en esta categoría aún</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" *ngIf="lightboxSrc" (click)="closeLightbox()">
+  <button class="lightbox__close" (click)="closeLightbox()">✕</button>
+  <img [src]="lightboxSrc" alt="Foto ampliada" (click)="$event.stopPropagation()" />
+</div>

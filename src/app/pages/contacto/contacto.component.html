@@ -1,0 +1,137 @@
+<div class="page-hero">
+  <div class="page-hero__inner">
+    <span class="page-hero__tag">Hablemos</span>
+    <h1>Contáctanos</h1>
+    <p>Cuéntanos sobre tu evento y te enviamos una cotización personalizada</p>
+  </div>
+</div>
+
+<section class="section contact-section">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- Formulario Contacto -->
+      <div class="contact-card">
+        <div class="contact-card__header">
+          <span class="contact-card__icon">✉️</span>
+          <div>
+            <h3>Envíanos un mensaje</h3>
+            <p>Te respondemos en menos de 24 horas</p>
+          </div>
+        </div>
+
+        <div class="alert alert--success" *ngIf="contactSuccess">
+          <span>✅</span> ¡Mensaje enviado! Te contactaremos pronto.
+        </div>
+        <div class="alert alert--error" *ngIf="contactError">
+          <span>⚠️</span> {{ contactError }}
+        </div>
+
+        <form [formGroup]="contactForm" (ngSubmit)="sendContact()" *ngIf="!contactSuccess">
+          <div class="form-group">
+            <label>Nombre completo *</label>
+            <input type="text" formControlName="nombre" placeholder="Tu nombre"
+              [class.error]="field(contactForm,'nombre')?.invalid && field(contactForm,'nombre')?.touched">
+            <span class="field-error" *ngIf="field(contactForm,'nombre')?.invalid && field(contactForm,'nombre')?.touched">
+              ⚠ Nombre requerido
+            </span>
+          </div>
+          <div class="form-group">
+            <label>Correo electrónico *</label>
+            <input type="email" formControlName="email" placeholder="tu@correo.com"
+              [class.error]="field(contactForm,'email')?.invalid && field(contactForm,'email')?.touched">
+            <span class="field-error" *ngIf="field(contactForm,'email')?.invalid && field(contactForm,'email')?.touched">
+              ⚠ Correo inválido
+            </span>
+          </div>
+          <div class="form-group">
+            <label>Mensaje *</label>
+            <textarea formControlName="mensaje" placeholder="¿En qué podemos ayudarte? Cuéntanos sobre tu evento..." rows="5"
+              [class.error]="field(contactForm,'mensaje')?.invalid && field(contactForm,'mensaje')?.touched"></textarea>
+            <span class="field-error" *ngIf="field(contactForm,'mensaje')?.invalid && field(contactForm,'mensaje')?.touched">
+              ⚠ Mínimo 10 caracteres
+            </span>
+          </div>
+          <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center" [disabled]="loading">
+            <span *ngIf="!loading">Enviar mensaje</span>
+            <span *ngIf="loading" class="spinner-inline"></span>
+            <span *ngIf="loading">Enviando...</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Formulario Reserva -->
+      <div class="contact-card contact-card--featured">
+        <div class="contact-card__header">
+          <span class="contact-card__icon">📅</span>
+          <div>
+            <h3>Solicitar reserva</h3>
+            <p>Agenda tu evento directamente</p>
+          </div>
+        </div>
+
+        <div class="alert alert--success" *ngIf="bookingSuccess">
+          <span>✅</span> ¡Reserva registrada! Te confirmaremos pronto.
+        </div>
+        <div class="alert alert--error" *ngIf="bookingError">
+          <span>⚠️</span> {{ bookingError }}
+        </div>
+
+        <form [formGroup]="bookingForm" (ngSubmit)="sendBooking()" *ngIf="!bookingSuccess">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nombre completo *</label>
+              <input type="text" formControlName="nombre" placeholder="Tu nombre completo">
+            </div>
+            <div class="form-group">
+              <label>Teléfono *</label>
+              <input type="tel" formControlName="telefono" placeholder="+56 9 6260 6833">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Fecha del evento *</label>
+              <input type="date" formControlName="fechaEvento" [min]="today">
+            </div>
+            <div class="form-group">
+              <label>Tipo de evento *</label>
+              <select formControlName="tipoEvento">
+                <option value="">Selecciona...</option>
+                <option *ngFor="let t of tiposEvento" [value]="t">{{ t }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Detalles adicionales</label>
+            <textarea formControlName="mensaje" rows="3" placeholder="Número de invitados, lugar del evento, canciones favoritas..."></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center" [disabled]="loading">
+            <span *ngIf="!loading">Solicitar reserva</span>
+            <span *ngIf="loading">Enviando...</span>
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Info + WhatsApp -->
+    <div class="contact-info-bar">
+      <a href="tel:+56962606833" class="contact-info-item">
+        <span class="contact-info-item__icon">📞</span>
+        <div><strong>Llámanos</strong><span>+56 9 6260 6833</span></div>
+      </a>
+      <a href="mailto:mariachimichoacan.cl@gmail.com" class="contact-info-item">
+        <span class="contact-info-item__icon">📧</span>
+        <div><strong>Escríbenos</strong><span>mariachimichoacan.cl&#64;gmail.com</span></div>
+      </a>
+      <a href="https://wa.me/56962606833?text=Hola%2C%20quiero%20información%20sobre%20sus%20servicios" target="_blank" class="contact-info-item contact-info-item--wa">
+        <span class="contact-info-item__icon">💬</span>
+        <div><strong>WhatsApp</strong><span>Respuesta inmediata</span></div>
+      </a>
+      <div class="contact-info-item">
+        <span class="contact-info-item__icon">📍</span>
+        <div><strong>Servimos en</strong><span>Santiago de Chile</span></div>
+      </div>
+    </div>
+  </div>
+</section>

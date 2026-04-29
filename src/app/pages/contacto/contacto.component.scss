@@ -1,0 +1,102 @@
+.contact-section { padding-block: 5rem; }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.contact-card {
+  background: #fff;
+  border: 1px solid #EDE8DF;
+  border-radius: 20px;
+  padding: 2.25rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+
+  &--featured {
+    border-color: rgba(201,150,12,0.3);
+    box-shadow: 0 4px 24px rgba(201,150,12,0.1);
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #F3EFE7;
+
+    h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: #0D0D1A;
+      margin-bottom: 0.15rem;
+    }
+    p { font-size: 0.85rem; color: #9CA3AF; }
+  }
+
+  &__icon { font-size: 2rem; flex-shrink: 0; }
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.spinner-inline {
+  width: 16px; height: 16px;
+  border: 2px solid rgba(0,0,0,0.2);
+  border-top-color: #0D0D1A;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.contact-info-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 2rem;
+  background: #F7F4EE;
+  border-radius: 16px;
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 200ms, box-shadow 200ms;
+  border: 1px solid #EDE8DF;
+
+  &:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+
+  &--wa {
+    border-color: rgba(37,211,102,0.3);
+    &:hover { box-shadow: 0 8px 24px rgba(37,211,102,0.15); }
+  }
+
+  &__icon { font-size: 1.5rem; flex-shrink: 0; }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 0;
+    strong { font-size: 0.85rem; color: #0D0D1A; }
+    span { font-size: 0.8rem; color: #9CA3AF; overflow-wrap: break-word; word-break: break-all; }
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+}
