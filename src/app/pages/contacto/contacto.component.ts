@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
-const FORMSPREE_ID = 'YOUR_FORMSPREE_ID'; // Reemplazar con tu ID de Formspree
+const FORMSPREE_ID = 'xnjwavkg';
 
 @Component({
   selector: 'app-contacto',
