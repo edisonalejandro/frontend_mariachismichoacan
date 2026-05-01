@@ -54,12 +54,11 @@
     </div>
     <div class="pasos-grid">
       <div class="paso" *ngFor="let p of pasos; let i = index">
-        <div class="paso__img-wrap">
-          <img [src]="p.photo" [alt]="p.titulo" class="paso__img" loading="lazy" />
-          <div class="paso__num">{{ i + 1 }}</div>
-        </div>
+        <div class="paso__num">{{ i + 1 }}</div>
+        <div class="paso__icon">{{ p.icon }}</div>
         <h3 class="paso__titulo">{{ p.titulo }}</h3>
         <p class="paso__desc">{{ p.desc }}</p>
+        <div class="paso__conector" *ngIf="i < pasos.length - 1"></div>
       </div>
     </div>
     <div class="paso__cta-wrap">
