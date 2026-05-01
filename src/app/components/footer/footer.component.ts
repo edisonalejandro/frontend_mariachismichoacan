@@ -42,9 +42,12 @@ import { Component } from '@angular/core';
 
   <div class="footer__bottom">
     <p>© {{ year }} Mariachi Michoacán. Todos los derechos reservados.</p>
-    <p>
+    <p class="footer__flowbit-line">
       Diseñado y desarrollado por
-      <a href="https://www.flowbit.cl/" target="_blank" rel="noopener" class="footer__flowbit">Flowbit</a>
+      <a href="https://www.flowbit.cl/" target="_blank" rel="noopener" class="footer__flowbit">
+        <img src="assets/favicon_flowbit.ico" alt="Flowbit" class="footer__flowbit-icon" />
+        Flowbit
+      </a>
       &nbsp;·&nbsp;
       <a href="https://www.instagram.com/flowbit.cl/" target="_blank" rel="noopener" class="footer__flowbit">&#64;flowbit.cl</a>
     </p>
@@ -92,11 +95,33 @@ import { Component } from '@angular/core';
   text-decoration: none;
   font-weight: 600;
   transition: color 200ms;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  vertical-align: middle;
   &:hover { color: #F5C842; }
+}
+.footer__flowbit-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  border-radius: 3px;
+  vertical-align: middle;
+}
+.footer__flowbit-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  justify-content: center;
 }
 @media (max-width: 768px) {
   .footer__container { grid-template-columns: 1fr; gap: 2rem; }
-  .footer__bottom { flex-direction: column; text-align: center; }
+  .footer__bottom {
+    flex-direction: column;
+    text-align: center;
+    padding-bottom: calc(1.5rem + 80px + env(safe-area-inset-bottom));
+  }
 }
   `]
 })

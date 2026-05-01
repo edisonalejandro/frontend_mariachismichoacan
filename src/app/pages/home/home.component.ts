@@ -44,17 +44,17 @@ export class HomeComponent implements OnInit {
 
   pasos = [
     {
-      icon: '💬',
+      photo: 'assets/photos/mariachi-michoacan-01.jpg',
       titulo: 'Contáctanos',
       desc: 'Escríbenos por WhatsApp o llámanos. Cuéntanos la fecha, hora y dirección. Te respondemos en minutos.'
     },
     {
-      icon: '✅',
+      photo: 'assets/photos/mariachi-michoacan-07.jpg',
       titulo: 'Confirmamos tu reserva',
       desc: 'Te confirmamos disponibilidad al instante. Sin pago anticipado — solo acordamos los detalles de tu evento.'
     },
     {
-      icon: '🎺',
+      photo: 'assets/photos/mariachi-michoacan-14.jpg',
       titulo: '¡Disfrutamos juntos!',
       desc: 'Llegamos puntuales con nuestro equipo completo. El pago es en efectivo o transferencia al momento de la serenata.'
     },

@@ -8,30 +8,35 @@ import { Component, HostListener } from '@angular/core';
       <div class="navbar__inner">
 
         <!-- Links izquierda -->
-        <ul class="navbar__links navbar__links--left" [class.navbar__links--open]="menuOpen">
-          <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="close()">Inicio</a></li>
-          <li><a routerLink="/servicios" routerLinkActive="active" (click)="close()">Servicios</a></li>
-          <li><a routerLink="/paquetes" routerLinkActive="active" (click)="close()">Paquetes</a></li>
+        <ul class="navbar__links navbar__links--left">
+          <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Inicio</a></li>
+          <li><a routerLink="/servicios" routerLinkActive="active">Servicios</a></li>
+          <li><a routerLink="/paquetes" routerLinkActive="active">Paquetes</a></li>
         </ul>
 
         <!-- Logo centrado -->
-        <a routerLink="/" class="navbar__brand" (click)="close()">
+        <a routerLink="/" class="navbar__brand">
           <img src="assets/logo.png" alt="Mariachi Michoacán" class="navbar__logo-img" />
         </a>
 
         <!-- Links derecha -->
-        <ul class="navbar__links navbar__links--right" [class.navbar__links--open]="menuOpen">
-          <li><a routerLink="/galeria" routerLinkActive="active" (click)="close()">Galería</a></li>
-          <li><a routerLink="/testimonios" routerLinkActive="active" (click)="close()">Testimonios</a></li>
+        <ul class="navbar__links navbar__links--right">
+          <li><a routerLink="/galeria" routerLinkActive="active">Galería</a></li>
+          <li><a routerLink="/testimonios" routerLinkActive="active">Testimonios</a></li>
           <li class="navbar__cta-item">
-            <a routerLink="/contacto" class="btn btn--gold btn--navbar" (click)="close()">Cotizar ahora</a>
+            <a routerLink="/contacto" class="btn btn--gold btn--navbar">Cotizar ahora</a>
           </li>
         </ul>
+      </div>
 
-        <!-- Burger mobile -->
-        <button class="navbar__burger" (click)="toggle()" [class.navbar__burger--open]="menuOpen" aria-label="Menú">
-          <span></span><span></span><span></span>
-        </button>
+      <!-- Barra de navegación móvil siempre visible -->
+      <div class="navbar__mobile-bar">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="navbar__mobile-btn">Inicio</a>
+        <a routerLink="/servicios" routerLinkActive="active" class="navbar__mobile-btn">Servicios</a>
+        <a routerLink="/paquetes" routerLinkActive="active" class="navbar__mobile-btn">Paquetes</a>
+        <a routerLink="/galeria" routerLinkActive="active" class="navbar__mobile-btn">Galería</a>
+        <a routerLink="/testimonios" routerLinkActive="active" class="navbar__mobile-btn">Testimonios</a>
+        <a routerLink="/contacto" routerLinkActive="active" class="navbar__mobile-btn navbar__mobile-btn--cta">Cotizar</a>
       </div>
     </nav>
   `,
@@ -132,72 +137,66 @@ import { Component, HostListener } from '@angular/core';
       }
     }
 
-    .navbar__burger {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      width: 36px;
-      height: 36px;
-      padding: 4px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 6px;
-      cursor: pointer;
-      grid-column: 3;
-      justify-self: end;
-
-      span {
-        display: block;
-        width: 18px;
-        height: 2px;
-        background: #fff;
-        border-radius: 2px;
-        transition: all 250ms ease;
-      }
-
-      &--open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-      &--open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-      &--open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    }
+    .navbar__mobile-bar { display: none; }
 
     @media (max-width: 860px) {
-      .navbar__inner { grid-template-columns: 1fr auto auto; }
-      .navbar__burger { display: flex; }
+      .navbar__inner { grid-template-columns: 1fr; justify-items: center; height: 56px; }
+      .navbar__links { display: none; }
 
-      .navbar__links {
-        display: none;
-        flex-direction: column;
-        align-items: flex-start;
-        position: fixed;
-        top: 72px;
-        left: 0; right: 0;
-        background: rgba(3,8,22,0.98);
-        backdrop-filter: blur(20px);
-        padding: 1.5rem;
-        gap: 0.25rem;
+      .navbar__mobile-bar {
+        display: flex;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 0.4rem;
+        padding: 0.5rem 0.75rem;
         border-top: 1px solid rgba(201,150,12,0.2);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        background: rgba(3,8,22,0.97);
 
-        &--open { display: flex; }
-        &--left, &--right { grid-column: unset; justify-content: flex-start; }
-
-        a { font-size: 1rem; padding: 0.6rem 0.85rem; width: 100%; }
+        &::-webkit-scrollbar { display: none; }
       }
 
-      .navbar__cta-item { width: 100%; margin-left: 0; margin-top: 0.5rem;
-        a { width: 100%; text-align: center; justify-content: center; display: block; }
+      .navbar__mobile-btn {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.55rem 1rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: rgba(255,255,255,0.82);
+        background: rgba(255,255,255,0.07);
+        border: 1px solid rgba(255,255,255,0.14);
+        border-radius: 50px;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: background 200ms, color 200ms, border-color 200ms;
+
+        &:hover, &.active {
+          background: rgba(201,150,12,0.18);
+          color: #C9960C;
+          border-color: rgba(201,150,12,0.5);
+        }
+
+        &--cta {
+          background: linear-gradient(135deg, #C9960C, #A67A0A);
+          color: #fff;
+          border-color: transparent;
+          font-weight: 700;
+
+          &:hover, &.active {
+            background: linear-gradient(135deg, #D4A012, #C9960C);
+            color: #fff;
+            border-color: transparent;
+          }
+        }
       }
     }
   `]
 })
 export class NavbarComponent {
-  menuOpen = false;
   scrolled = false;
 
   @HostListener('window:scroll')
   onScroll() { this.scrolled = window.scrollY > 20; }
-
-  toggle() { this.menuOpen = !this.menuOpen; }
-  close() { this.menuOpen = false; }
 }
