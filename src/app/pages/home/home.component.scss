@@ -159,7 +159,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 15%;
+    object-position: center 35%;
     display: block;
   }
 
@@ -189,9 +189,9 @@
     &__proof { justify-content: center; }
 
     &__right {
-      height: 75vw;
-      min-height: 340px;
-      max-height: 480px;
+      height: 90vw;
+      min-height: 420px;
+      max-height: 580px;
     }
 
     &__photo-fade {
