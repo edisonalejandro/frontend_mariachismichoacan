@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
+declare function gtag(...args: any[]): void;
+
 const FORMSPREE_ID = 'xnjwavkg';
 
 @Component({
@@ -45,7 +47,7 @@ export class ContactoComponent {
       ...this.contactForm.value,
       _subject: 'Nuevo mensaje de contacto — Mariachi Michoacán'
     }).subscribe({
-      next: () => { this.contactSuccess = true; this.contactForm.reset(); this.loading = false; },
+      next: () => { this.contactSuccess = true; this.contactForm.reset(); this.loading = false; gtag('event', 'form_contact', { event_category: 'contacto', event_label: 'formulario_mensaje' }); },
       error: () => { this.contactError = 'Error al enviar. Intenta de nuevo.'; this.loading = false; }
     });
   }
@@ -57,7 +59,7 @@ export class ContactoComponent {
       ...this.bookingForm.value,
       _subject: 'Nueva reserva — Mariachi Michoacán'
     }).subscribe({
-      next: () => { this.bookingSuccess = true; this.bookingForm.reset(); this.loading = false; },
+      next: () => { this.bookingSuccess = true; this.bookingForm.reset(); this.loading = false; gtag('event', 'form_booking', { event_category: 'contacto', event_label: 'formulario_reserva' }); },
       error: () => { this.bookingError = 'Error al enviar. Intenta de nuevo.'; this.loading = false; }
     });
   }
