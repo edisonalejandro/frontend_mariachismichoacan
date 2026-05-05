@@ -14,7 +14,6 @@
         <div class="plan__popular" *ngIf="p.featured">⭐ Más Popular</div>
         <h3 class="plan__name font-display">{{ p.nombre }}</h3>
         <div class="plan__price">{{ p.precio }}</div>
-        <p class="plan__duration">{{ p.duracion }}</p>
         <ul class="plan__features">
           <li *ngFor="let f of p.features">
             <span class="plan__check">✓</span> {{ f }}
