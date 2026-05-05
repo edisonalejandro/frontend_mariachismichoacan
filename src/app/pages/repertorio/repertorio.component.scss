@@ -1,0 +1,192 @@
+/* ===== INTRO STATS ===== */
+.repertorio-intro {
+  padding: 3.5rem 2rem;
+}
+
+.intro-grid {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+
+  @media (max-width: 600px) { gap: 2rem; }
+}
+
+.intro-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+
+  &__num {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: #C9960C;
+    line-height: 1;
+  }
+
+  &__label {
+    font-size: 0.82rem;
+    color: #6B7280;
+    letter-spacing: 0.04em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+.intro-desc {
+  text-align: center;
+  color: #6B7280;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  max-width: 580px;
+  margin-inline: auto;
+}
+
+/* ===== SECCIÓN PRINCIPAL ===== */
+.repertorio-section {
+  padding: 5rem 2rem;
+  background: #fff;
+}
+
+/* ===== GRID DE MOTIVOS ===== */
+.motivos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+
+  @media (max-width: 768px) { grid-template-columns: 1fr; }
+}
+
+/* ===== CARD DE MOTIVO ===== */
+.motivo-card {
+  border: 1.5px solid #EDE0C4;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 250ms, box-shadow 250ms;
+  background: #fff;
+
+  &:hover {
+    border-color: #C9960C;
+    box-shadow: 0 4px 20px rgba(201,150,12,0.12);
+  }
+
+  &--open {
+    border-color: #C9960C;
+    box-shadow: 0 8px 32px rgba(201,150,12,0.15);
+
+    .motivo-card__chevron svg { transform: rotate(180deg); }
+  }
+
+  /* Tonos de acento en el borde superior */
+  &--gold    { border-top: 3px solid #C9960C; }
+  &--crimson { border-top: 3px solid #7B1A1A; }
+  &--dark    { border-top: 3px solid #1A1A1A; }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    user-select: none;
+  }
+
+  &__icono {
+    font-size: 2rem;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.1));
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__titulo {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #1A1A1A;
+    margin-bottom: 0.2rem;
+  }
+
+  &__sub {
+    font-size: 0.78rem;
+    color: #9CA3AF;
+    letter-spacing: 0.02em;
+  }
+
+  &__chevron {
+    flex-shrink: 0;
+    color: #C9960C;
+
+    svg { transition: transform 300ms ease; }
+  }
+
+  &__body {
+    border-top: 1px solid #F0E8D8;
+    padding: 1.25rem 1.5rem 1.5rem;
+    background: #FDFAF5;
+    animation: fadeDown 200ms ease;
+  }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== CTA centrado ===== */
+.cta-band__inner {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  .cta-band__sub {
+    max-width: 480px;
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .btn { margin-bottom: 1.5rem; }
+}
+
+/* ===== LISTA DE CANCIONES ===== */
+.canciones-lista {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem 1.5rem;
+
+  @media (max-width: 480px) { grid-template-columns: 1fr; }
+
+  li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    font-size: 0.88rem;
+    color: #374151;
+    line-height: 1.5;
+  }
+
+  &__num {
+    flex-shrink: 0;
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #C9960C;
+    min-width: 18px;
+    opacity: 0.8;
+  }
+
+  &__nombre {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+  }
+}

@@ -7,30 +7,94 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  heroPhoto = 'assets/photos/mariachi-michoacan-00.png';
+
   testimonials = [
-    { nombre: 'Ana García',      comentario: 'Fueron increíbles en nuestra boda. Todo el mundo quedó emocionado. ¡Gracias Mariachi Michoacán!', rating: 5 },
-    { nombre: 'Carlos Méndez',   comentario: 'La serenata para mi esposa fue perfecta. Profesionales y muy emotivos. Los recomiendo al 100%.', rating: 5 },
-    { nombre: 'Familia Rodríguez', comentario: 'Las mañanitas de mi mamá fueron las mejores de su vida. Lloramos de emoción. ¡Excelentes!',  rating: 5 },
+    { nombre: 'Ana García',        comentario: 'Fueron increíbles en nuestra boda. Todo el mundo quedó emocionado. ¡Gracias Mariachi Michoacán!', rating: 5 },
+    { nombre: 'Carlos Méndez',     comentario: 'La serenata para mi esposa fue perfecta. Profesionales y muy emotivos. Los recomiendo al 100%.', rating: 5 },
+    { nombre: 'Familia Rodríguez', comentario: 'Las mañanitas de mi mamá fueron las mejores de su vida. Lloramos de emoción. ¡Excelentes!',       rating: 5 },
   ];
 
-  private readonly heroPhotos = [
+  serviciosHome = [
+    {
+      icon: '🎤',
+      nombre: 'Serenatas Románticas',
+      desc: 'Sorprende a esa persona especial con una serenata inolvidable. Romance y tradición en cada canción.'
+    },
+    {
+      icon: '🎉',
+      nombre: 'Eventos y Celebraciones',
+      desc: 'Bodas, cumpleaños, aniversarios y toda ocasión especial. Hacemos tu evento único e irrepetible.'
+    },
+    {
+      icon: '💼',
+      nombre: 'Eventos Corporativos',
+      desc: 'Profesionalismo y elegancia para eventos empresariales y reuniones importantes en Santiago.'
+    },
+  ];
+
+  paquetes = [
+    {
+      icono: '🎸',
+      nombre: 'Serenata Básica',
+      duracion: '30 Minutos',
+      precio: '$45.000',
+      features: ['3 músicos', 'Hasta 5 canciones', 'Ideal para sorpresas'],
+      popular: false,
+    },
+    {
+      icono: '🎺',
+      nombre: 'Evento Estándar',
+      duracion: '1 Hora',
+      precio: '$60.000',
+      features: ['4 músicos', 'Hasta 10 canciones', 'Sonido profesional'],
+      popular: false,
+    },
+    {
+      icono: '🎻',
+      nombre: 'Evento Premium',
+      duracion: '1 Hora +',
+      precio: '$70.000',
+      features: ['4 músicos', 'Voz femenina', 'Hasta 12 canciones'],
+      popular: true,
+    },
+  ];
+
+  galeriaFotos = [
+    'assets/photos/mariachi-michoacan-01.jpg',
+    'assets/photos/mariachi-michoacan-02.jpg',
+    'assets/photos/mariachi-michoacan-04.jpg',
+    'assets/photos/mariachi-michoacan-05.jpg',
+    'assets/photos/mariachi-michoacan-07.jpg',
+    'assets/photos/mariachi-michoacan-08.jpg',
+    'assets/photos/mariachi-michoacan-09.jpg',
+    'assets/photos/mariachi-michoacan-10.jpg',
+    'assets/photos/mariachi-michoacan-11.jpg',
+    'assets/photos/mariachi-michoacan-12.jpg',
     'assets/photos/mariachi-michoacan-13.jpg',
     'assets/photos/mariachi-michoacan-14.jpg',
+    'assets/photos/mariachi-michoacan-15.jpg',
+    'assets/photos/mariachi-michoacan-16.jpg',
+    'assets/photos/mariachi-michoacan-17.jpg',
+    'assets/photos/mariachi-michoacan-18.jpg',
+    'assets/photos/mariachi-michoacan-19.jpg',
+    'assets/photos/mariachi-michoacan-20.jpg',
+    'assets/photos/mariachi-michoacan-21.jpg',
+    'assets/photos/mariachi-michoacan-23.jpg',
+    'assets/photos/mariachi-michoacan-24.jpg',
+    'assets/photos/mariachi-michoacan-25.jpg',
+    'assets/photos/mariachi-michoacan-26.jpg',
     'assets/photos/mariachi-michoacan-27.jpg',
-  ];
-  heroPhoto = this.heroPhotos[Math.floor(Math.random() * this.heroPhotos.length)];
-
-  stats = [
-    { num: '+20', label: 'años de experiencia' },
-    { num: '500+', label: 'eventos realizados' },
-    { num: '5★', label: 'calificación promedio' },
-  ];
-
-  servicios = [
-    { icon: '💍', nombre: 'Bodas', desc: 'Tu boda merece la mejor música. Creamos el ambiente perfecto para tu gran día en Santiago.' },
-    { icon: '🌹', nombre: 'Serenatas', desc: 'Sorprende a quien amas con una serenata romántica de mariachi en Santiago de Chile.' },
-    { icon: '🎂', nombre: 'Cumpleaños', desc: 'Las mañanitas y mucho más para hacer la celebración memorable en toda la RM.' },
-    { icon: '🏢', nombre: 'Corporativos', desc: 'Toque cultural y festivo para tus eventos empresariales en Santiago.' },
+    'assets/photos/mariachi-michoacan-28.jpg',
+    'assets/photos/mariachi-michoacan-29.jpg',
+    'assets/photos/mariachi-michoacan-30.jpg',
+    'assets/photos/mariachi-michoacan-31.jpg',
+    'assets/photos/mariachi-michoacan-32.jpg',
+    'assets/photos/mariachi-michoacan-33.jpg',
+    'assets/photos/mariachi-michoacan-34.jpg',
+    'assets/photos/mariachi-michoacan-35.jpg',
+    'assets/photos/mariachi-michoacan-36.jpg',
   ];
 
   razones = [
@@ -40,24 +104,6 @@ export class HomeComponent implements OnInit {
     'Amplificación Digital Profesional incluida',
     'Trajes de charro tradicionales auténticos',
     'Transporte propio incluido en toda la Región Metropolitana',
-  ];
-
-  pasos = [
-    {
-      icon: '💬',
-      titulo: 'Contáctanos',
-      desc: 'Escríbenos por WhatsApp o llámanos. Cuéntanos la fecha, hora y dirección. Te respondemos en minutos.'
-    },
-    {
-      icon: '✅',
-      titulo: 'Confirmamos tu reserva',
-      desc: 'Te confirmamos disponibilidad al instante. Sin pago anticipado — solo acordamos los detalles de tu evento.'
-    },
-    {
-      icon: '🎺',
-      titulo: '¡Disfrutamos juntos!',
-      desc: 'Llegamos puntuales con nuestro equipo completo. El pago es en efectivo o transferencia al momento de la serenata.'
-    },
   ];
 
   faqs = [

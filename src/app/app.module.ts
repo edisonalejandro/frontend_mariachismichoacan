@@ -12,6 +12,7 @@ import { PaquetesComponent } from './pages/paquetes/paquetes.component';
 import { GaleriaComponent } from './pages/galeria/galeria.component';
 import { TestimoniosComponent } from './pages/testimonios/testimonios.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
+import { RepertorioComponent } from './pages/repertorio/repertorio.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { WhatsappButtonComponent } from './components/whatsapp-button/whatsapp-button.component';
@@ -27,6 +28,7 @@ import { YoutubeEmbedPipe } from './pipes/youtube-embed.pipe';
     GaleriaComponent,
     TestimoniosComponent,
     ContactoComponent,
+    RepertorioComponent,
     NavbarComponent,
     FooterComponent,
     WhatsappButtonComponent,
