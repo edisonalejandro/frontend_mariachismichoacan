@@ -90,11 +90,11 @@
     <div class="galeria-track">
       <!-- Set original -->
       <div class="galeria-slide" *ngFor="let foto of galeriaFotos; let i = index">
-        <img [src]="foto" [alt]="'Mariachi Michoacán Santiago - foto ' + (i+1)" loading="lazy" />
+        <img [src]="foto" [alt]="'Mariachi Michoacán Santiago - foto ' + (i+1)" />
       </div>
       <!-- Set duplicado para loop continuo -->
       <div class="galeria-slide" *ngFor="let foto of galeriaFotos; let i = index" aria-hidden="true">
-        <img [src]="foto" [alt]="'Mariachi Michoacán Santiago - foto ' + (i+1)" loading="lazy" />
+        <img [src]="foto" [alt]="'Mariachi Michoacán Santiago - foto ' + (i+1)" />
       </div>
     </div>
   </div>
