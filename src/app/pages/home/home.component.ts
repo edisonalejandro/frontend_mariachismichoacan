@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  heroPhoto = 'assets/photos/mariachi-michoacan-00.png';
+  heroPhoto = 'assets/dia_madre.jpeg';
 
   testimonials = [
     { nombre: 'Ana García',        comentario: 'Fueron increíbles en nuestra boda. Todo el mundo quedó emocionado. ¡Gracias Mariachi Michoacán!', rating: 5 },
