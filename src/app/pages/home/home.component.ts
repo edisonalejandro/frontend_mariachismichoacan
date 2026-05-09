@@ -36,14 +36,6 @@ export class HomeComponent implements OnInit {
 
   paquetes = [
     {
-      icono: '🎸',
-      nombre: 'Serenata Básica',
-      duracion: '30 Minutos',
-      precio: '$45.000',
-      features: ['3 músicos', 'Hasta 5 canciones', 'Ideal para sorpresas'],
-      popular: false,
-    },
-    {
       icono: '🎺',
       nombre: 'Evento Estándar',
       duracion: '1 Hora',
