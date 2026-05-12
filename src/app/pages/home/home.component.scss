@@ -40,8 +40,13 @@
       linear-gradient(to right,
         rgba(10,10,10,1)    0%,
         rgba(10,10,10,1)    38%,
-        rgba(10,10,10,0)    44%,
-        transparent         100%
+        rgba(10,10,10,0.7)  55%,
+        rgba(10,10,10,0.15) 80%,
+        rgba(10,10,10,0.05) 100%
+      ),
+      linear-gradient(to top,
+        rgba(10,10,10,0.5) 0%,
+        transparent 30%
       );
   }
 
