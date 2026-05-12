@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
 
+# Evitar indexar rutas internas de Angular y archivos que no aportan SEO
+Disallow: /assets/dia_madre.jpeg
+
+# Permitir explícitamente CSS y JS para que Google pueda renderizar el sitio
+Allow: /*.js$
+Allow: /*.css$
+
 Sitemap: https://mariachimichoacan.cl/sitemap.xml
