@@ -9,6 +9,10 @@ import { Component } from '@angular/core';
 export class PaquetesComponent {
   planes = [
     {
+      nombre: 'Opción 1', precio: '$45.000', duracion: '3 Mariachis · 5 canciones', featured: false,
+      features: ['3 Mariachis Mexicanos 🇲🇽','Voces masculinas 🎤','5 Canciones Completas','Transporte Incluido 🚗','Amplificación Digital Profesional 🔊','Charros Mexicanos','Fotos con Sombrero mexicano 📸']
+    },
+    {
       nombre: 'Opción 2', precio: '$50.000', duracion: '3 Mariachis · 8 canciones', featured: false,
       features: ['3 Mariachis Mexicanos 🇲🇽','Voces masculinas 🎤','8 Canciones','Repertorio Alegre y Romántico','Transporte Incluido 🚗','Amplificación Digital Profesional 🔊','Charros Mexicanos','Fotos con Sombrero mexicano 📸']
     },

@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  heroPhoto = 'assets/dia_madre.jpeg';
+  heroPhoto = 'assets/photos/mariachi-michoacan-00.png';
 
   testimonials = [
     { nombre: 'Ana García',        comentario: 'Fueron increíbles en nuestra boda. Todo el mundo quedó emocionado. ¡Gracias Mariachi Michoacán!', rating: 5 },
@@ -35,6 +35,14 @@ export class HomeComponent implements OnInit {
   ];
 
   paquetes = [
+    {
+      icono: '🎸',
+      nombre: 'Serenata Básica',
+      duracion: '30 Minutos',
+      precio: '$45.000',
+      features: ['3 músicos', 'Hasta 5 canciones', 'Ideal para sorpresas'],
+      popular: false,
+    },
     {
       icono: '🎺',
       nombre: 'Evento Estándar',
