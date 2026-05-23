@@ -1,7 +1,14 @@
 <!-- ===== HERO ===== -->
 <section class="hero">
   <div class="hero__bg">
-    <img [src]="heroPhoto" alt="Mariachi Michoacán en Santiago de Chile" class="hero__photo" />
+    <picture>
+      <source srcset="assets/photos/mariachi-michoacan-00.webp" type="image/webp">
+      <img src="assets/photos/mariachi-michoacan-00.png"
+           alt="Mariachi Michoacán en Santiago de Chile"
+           class="hero__photo"
+           width="1200" height="800"
+           fetchpriority="high">
+    </picture>
     <div class="hero__overlay"></div>
   </div>
 
@@ -90,11 +97,11 @@
     <div class="galeria-track">
       <!-- Set original -->
       <div class="galeria-slide" *ngFor="let foto of galeriaFotos; let i = index">
-        <img [src]="foto" [alt]="'Mariachi Michoacán Santiago - foto ' + (i+1)" />
+        <img [src]="foto" [alt]="'Mariachi Michoacán Santiago - foto ' + (i+1)" loading="lazy" width="600" height="400" />
       </div>
       <!-- Set duplicado para loop continuo -->
       <div class="galeria-slide" *ngFor="let foto of galeriaFotos; let i = index" aria-hidden="true">
-        <img [src]="foto" [alt]="'Mariachi Michoacán Santiago - foto ' + (i+1)" />
+        <img [src]="foto" [alt]="'Mariachi Michoacán Santiago - foto ' + (i+1)" loading="lazy" width="600" height="400" />
       </div>
     </div>
   </div>
@@ -142,7 +149,10 @@
 <!-- ===== SOBRE NOSOTROS ===== -->
 <section class="sobre-section">
   <div class="sobre-section__photo">
-    <img src="assets/photos/mariachi-michoacan-27.jpg" alt="Mariachi Michoacán — grupo profesional en Santiago de Chile" loading="lazy" />
+    <picture>
+      <source srcset="assets/photos/mariachi-michoacan-27.webp" type="image/webp">
+      <img src="assets/photos/mariachi-michoacan-27.jpg" alt="Mariachi Michoacán — grupo profesional en Santiago de Chile" loading="lazy" width="800" height="600" />
+    </picture>
   </div>
   <div class="sobre-section__content">
     <div class="ornament-tag ornament-tag--left" style="margin-bottom:1.5rem">Sobre nosotros</div>
