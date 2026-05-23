@@ -97,11 +97,11 @@
     <div class="galeria-track">
       <!-- Set original -->
       <div class="galeria-slide" *ngFor="let foto of galeriaFotos; let i = index">
-        <img [src]="foto" [alt]="'Mariachi Michoacán Santiago - foto ' + (i+1)" loading="lazy" width="600" height="400" />
+        <img [src]="foto" [alt]="'Mariachi Michoacán Santiago - foto ' + (i+1)" width="600" height="400" />
       </div>
       <!-- Set duplicado para loop continuo -->
       <div class="galeria-slide" *ngFor="let foto of galeriaFotos; let i = index" aria-hidden="true">
-        <img [src]="foto" [alt]="'Mariachi Michoacán Santiago - foto ' + (i+1)" loading="lazy" width="600" height="400" />
+        <img [src]="foto" [alt]="'Mariachi Michoacán Santiago - foto ' + (i+1)" width="600" height="400" />
       </div>
     </div>
   </div>
@@ -150,7 +150,7 @@
 <section class="sobre-section">
   <div class="sobre-section__photo">
     <picture>
-      <source srcset="assets/photos/mariachi-michoacan-27.webp" type="image/webp">
+      <source srcset="assets/photos/mariachi-michoacan-27-sm.webp" type="image/webp">
       <img src="assets/photos/mariachi-michoacan-27.jpg" alt="Mariachi Michoacán — grupo profesional en Santiago de Chile" loading="lazy" width="800" height="600" />
     </picture>
   </div>
