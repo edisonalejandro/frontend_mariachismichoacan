@@ -8,4 +8,4 @@ Disallow: /assets/dia_madre.jpeg
 Allow: /*.js$
 Allow: /*.css$
 
-Sitemap: https://mariachimichoacan.cl/sitemap.xml
+Sitemap: https://mariachismichoacan.cl/sitemap.xml

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -133,8 +134,10 @@ export class HomeComponent implements OnInit {
     },
   ];
 
-  constructor() {
-    this.injectFaqSchema();
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.injectFaqSchema();
+    }
   }
 
   ngOnInit() {}

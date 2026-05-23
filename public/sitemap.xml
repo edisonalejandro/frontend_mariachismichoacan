@@ -4,56 +4,56 @@
 
   <!-- Página principal -->
   <url>
-    <loc>https://mariachimichoacan.cl/</loc>
-    <lastmod>2026-05-11</lastmod>
+    <loc>https://mariachismichoacan.cl/</loc>
+    <lastmod>2026-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Servicios: serenatas, bodas, eventos -->
   <url>
-    <loc>https://mariachimichoacan.cl/servicios</loc>
-    <lastmod>2026-05-11</lastmod>
+    <loc>https://mariachismichoacan.cl/servicios</loc>
+    <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Precios y paquetes — alta intención de compra -->
   <url>
-    <loc>https://mariachimichoacan.cl/paquetes</loc>
-    <lastmod>2026-05-11</lastmod>
+    <loc>https://mariachismichoacan.cl/paquetes</loc>
+    <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Contacto — página de conversión -->
   <url>
-    <loc>https://mariachimichoacan.cl/contacto</loc>
-    <lastmod>2026-05-11</lastmod>
+    <loc>https://mariachismichoacan.cl/contacto</loc>
+    <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <!-- Repertorio — contenido útil y keywords de canciones -->
   <url>
-    <loc>https://mariachimichoacan.cl/repertorio</loc>
-    <lastmod>2026-05-11</lastmod>
+    <loc>https://mariachismichoacan.cl/repertorio</loc>
+    <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Testimonios — prueba social -->
   <url>
-    <loc>https://mariachimichoacan.cl/testimonios</loc>
-    <lastmod>2026-05-11</lastmod>
+    <loc>https://mariachismichoacan.cl/testimonios</loc>
+    <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
 
   <!-- Galería de fotos -->
   <url>
-    <loc>https://mariachimichoacan.cl/galeria</loc>
-    <lastmod>2026-05-11</lastmod>
+    <loc>https://mariachismichoacan.cl/galeria</loc>
+    <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

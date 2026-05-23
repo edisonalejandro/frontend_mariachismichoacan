@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -10,7 +11,7 @@ interface PageMeta {
   canonical: string;
 }
 
-const BASE = 'https://mariachimichoacan.cl';
+const BASE = 'https://mariachismichoacan.cl';
 
 const PAGE_META: Record<string, PageMeta> = {
   '/': {
@@ -53,7 +54,12 @@ const PAGE_META: Record<string, PageMeta> = {
 
 @Injectable({ providedIn: 'root' })
 export class SeoService {
-  constructor(private title: Title, private meta: Meta, private router: Router) {}
+  constructor(
+    private title: Title,
+    private meta: Meta,
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: object
+  ) {}
 
   init() {
     this.router.events
@@ -75,13 +81,14 @@ export class SeoService {
     this.meta.updateTag({ name: 'twitter:title', content: data.title });
     this.meta.updateTag({ name: 'twitter:description', content: data.description });
 
-    // Canonical link
-    let link: HTMLLinkElement | null = document.querySelector("link[rel='canonical']");
-    if (!link) {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      document.head.appendChild(link);
+    if (isPlatformBrowser(this.platformId)) {
+      let link: HTMLLinkElement | null = document.querySelector("link[rel='canonical']");
+      if (!link) {
+        link = document.createElement('link');
+        link.setAttribute('rel', 'canonical');
+        document.head.appendChild(link);
+      }
+      link.setAttribute('href', data.canonical);
     }
-    link.setAttribute('href', data.canonical);
   }
 }
