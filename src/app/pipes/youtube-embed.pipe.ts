@@ -8,7 +8,7 @@ export class YoutubeEmbedPipe implements PipeTransform {
   transform(url: string): SafeResourceUrl {
     const videoId = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/)?.[1] ?? '';
     return this.sanitizer.bypassSecurityTrustResourceUrl(
-      `https://www.youtube.com/embed/${videoId}`
+      `https://www.youtube-nocookie.com/embed/${videoId}`
     );
   }
 }
