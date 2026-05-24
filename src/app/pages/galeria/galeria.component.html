@@ -20,7 +20,10 @@
            *ngFor="let item of filtrados"
            [class.galeria-item--featured]="item.featured"
            (click)="openLightbox(item.src.toString())">
-        <img [src]="item.src" [alt]="item.titulo" loading="lazy" />
+        <picture>
+          <source media="(max-width: 768px)" [srcset]="getSmSrc(item.src)">
+          <img [src]="item.src" [alt]="item.titulo" loading="lazy" width="800" height="600" />
+        </picture>
         <div class="galeria-item__overlay">
           <span class="galeria-item__cat">{{ item.categoria }}</span>
           <span class="galeria-item__titulo">{{ item.titulo }}</span>

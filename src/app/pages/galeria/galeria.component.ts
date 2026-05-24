@@ -67,6 +67,8 @@ export class GaleriaComponent {
 
   setCategoria(c: string) { this.categoriaActiva = c; }
 
+  getSmSrc(src: string): string { return src.replace('.webp', '-sm.webp'); }
+
   openLightbox(src: string) { this.lightboxSrc = src; }
   closeLightbox() { this.lightboxSrc = null; }
 }

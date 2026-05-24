@@ -9,7 +9,7 @@ import { Component, HostListener } from '@angular/core';
 
         <!-- Logo -->
         <a routerLink="/" class="navbar__brand">
-          <img src="assets/logo.png" alt="Mariachi Michoacán" class="navbar__logo-img" />
+          <img src="assets/logo.png" alt="Mariachi Michoacán" class="navbar__logo-img" width="180" height="48" />
         </a>
 
         <!-- Links centrales (desktop) -->
