@@ -7,7 +7,10 @@ import { Component } from '@angular/core';
 <footer class="footer">
   <div class="footer__main">
     <div class="footer__brand">
-      <img src="assets/Logo_Nuevo_perfil.png" alt="Mariachi Michoacán" class="footer__logo-img" width="200" height="80" />
+      <picture>
+        <source srcset="assets/Logo_Nuevo_perfil.webp" type="image/webp">
+        <img src="assets/Logo_Nuevo_perfil.png" alt="Mariachi Michoacán" class="footer__logo-img" width="140" height="140" />
+      </picture>
       <p>El sonido auténtico del mariachi mexicano para tus momentos más especiales en Santiago de Chile.</p>
       <div class="footer__social">
         <a href="https://www.instagram.com/mariachi_michoacan_chile/" target="_blank" rel="noopener" aria-label="Instagram">
