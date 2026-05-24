@@ -109,6 +109,8 @@ export class HomeComponent implements OnInit {
     },
   ];
 
+  youtubeLoaded = false;
+
   constructor(@Inject(PLATFORM_ID) private platformId: object) {
     if (isPlatformBrowser(this.platformId)) {
       this.injectFaqSchema();
@@ -116,6 +118,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  loadYoutube() { this.youtubeLoaded = true; }
 
   stars(rating: number): string[] {
     return Array(5).fill('');

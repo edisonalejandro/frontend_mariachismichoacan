@@ -66,13 +66,25 @@
 <!-- ===== VIDEO + TESTIMONIO ===== -->
 <section class="video-testimonio-section">
   <div class="video-col">
+    <!-- Facade: carga el iframe solo al hacer clic (evita YouTube en critical chain) -->
+    <div class="yt-facade" *ngIf="!youtubeLoaded" (click)="loadYoutube()" role="button" aria-label="Reproducir video Mariachi Michoacán">
+      <img src="https://i.ytimg.com/vi/7FW10c6iTTc/hqdefault.jpg"
+           alt="Ver video Mariachi Michoacán en Santiago de Chile"
+           loading="lazy" width="480" height="360" class="yt-facade__thumb" />
+      <div class="yt-facade__play" aria-hidden="true">
+        <svg viewBox="0 0 68 48" width="68" height="48">
+          <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#FF0000"/>
+          <path d="M45 24L27 14v20z" fill="white"/>
+        </svg>
+      </div>
+    </div>
     <iframe
-      src="https://www.youtube-nocookie.com/embed/7FW10c6iTTc?rel=0"
+      *ngIf="youtubeLoaded"
+      src="https://www.youtube-nocookie.com/embed/7FW10c6iTTc?rel=0&autoplay=1"
       title="Mariachi Michoacán Santiago de Chile"
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-      loading="lazy">
+      allowfullscreen>
     </iframe>
   </div>
   <div class="testimonio-col">
