@@ -1,4 +1,5 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, NgZone, ChangeDetectorRef, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -228,9 +229,33 @@ import { Component, HostListener } from '@angular/core';
     }
   `]
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit, OnDestroy {
   scrolled = false;
+  private _scrollHandler!: () => void;
 
-  @HostListener('window:scroll')
-  onScroll() { this.scrolled = window.scrollY > 20; }
+  constructor(
+    private ngZone: NgZone,
+    private cdr: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) private platformId: object
+  ) {}
+
+  ngOnInit() {
+    if (!isPlatformBrowser(this.platformId)) return;
+    this.ngZone.runOutsideAngular(() => {
+      this._scrollHandler = () => {
+        const s = window.scrollY > 20;
+        if (s !== this.scrolled) {
+          this.scrolled = s;
+          this.cdr.detectChanges();
+        }
+      };
+      window.addEventListener('scroll', this._scrollHandler, { passive: true });
+    });
+  }
+
+  ngOnDestroy() {
+    if (this._scrollHandler) {
+      window.removeEventListener('scroll', this._scrollHandler);
+    }
+  }
 }
