@@ -89,6 +89,13 @@ export class SeoService {
         document.head.appendChild(link);
       }
       link.setAttribute('href', data.canonical);
+
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: 'page_view',
+        page_path: data.canonical.replace(BASE, ''),
+        page_title: data.title,
+      });
     }
   }
 }
