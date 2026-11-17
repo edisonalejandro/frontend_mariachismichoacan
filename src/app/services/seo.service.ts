@@ -1,5 +1,5 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -38,6 +38,12 @@ const PAGE_META: Record<string, PageMeta> = {
     keywords: 'fotos mariachi santiago, videos mariachi chile, mariachi michoacan fotos, charros mexicanos santiago',
     canonical: `${BASE}/galeria`,
   },
+  '/repertorio': {
+    title: 'Repertorio Mariachi | +100 Canciones para Serenatas | Mariachi Michoacán',
+    description: 'Revisa nuestro repertorio de más de 100 canciones de mariachi: románticas, alegres y emotivas. Elige las tuyas para tu serenata o evento en Santiago de Chile.',
+    keywords: 'repertorio mariachi, canciones mariachi serenata, canciones mariachi santiago, mariachi cumpleaños canciones, mariachi boda canciones',
+    canonical: `${BASE}/repertorio`,
+  },
   '/testimonios': {
     title: 'Opiniones y Testimonios | Mariachi Michoacán Santiago Chile',
     description: 'Lee las opiniones de nuestros clientes satisfechos en Santiago de Chile. Mariachi Michoacán, 100% recomendados para tu serenata o evento.',
@@ -58,7 +64,8 @@ export class SeoService {
     private title: Title,
     private meta: Meta,
     private router: Router,
-    @Inject(PLATFORM_ID) private platformId: object
+    @Inject(PLATFORM_ID) private platformId: object,
+    @Inject(DOCUMENT) private document: Document
   ) {}
 
   init() {
@@ -81,15 +88,16 @@ export class SeoService {
     this.meta.updateTag({ name: 'twitter:title', content: data.title });
     this.meta.updateTag({ name: 'twitter:description', content: data.description });
 
-    if (isPlatformBrowser(this.platformId)) {
-      let link: HTMLLinkElement | null = document.querySelector("link[rel='canonical']");
-      if (!link) {
-        link = document.createElement('link');
-        link.setAttribute('rel', 'canonical');
-        document.head.appendChild(link);
-      }
-      link.setAttribute('href', data.canonical);
+    // Canonical en servidor y navegador: el HTML prerenderizado es lo que lee Google
+    let link: HTMLLinkElement | null = this.document.querySelector("link[rel='canonical']");
+    if (!link) {
+      link = this.document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      this.document.head.appendChild(link);
+    }
+    link.setAttribute('href', data.canonical);
 
+    if (isPlatformBrowser(this.platformId)) {
       (window as any).dataLayer = (window as any).dataLayer || [];
       (window as any).dataLayer.push({
         event: 'page_view',

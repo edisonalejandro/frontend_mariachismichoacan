@@ -67,17 +67,17 @@
 <section class="video-testimonio-section">
   <div class="video-col">
     <!-- Facade: carga el iframe solo al hacer clic (evita YouTube en critical chain) -->
-    <div class="yt-facade" *ngIf="!youtubeLoaded" (click)="loadYoutube()" role="button" aria-label="Reproducir video Mariachi Michoacán">
+    <button type="button" class="yt-facade" *ngIf="!youtubeLoaded" (click)="loadYoutube()" aria-label="Reproducir video de Mariachi Michoacán">
       <img src="https://i.ytimg.com/vi/7FW10c6iTTc/hqdefault.jpg"
-           alt="Ver video Mariachi Michoacán en Santiago de Chile"
+           alt=""
            loading="lazy" width="480" height="360" class="yt-facade__thumb" />
-      <div class="yt-facade__play" aria-hidden="true">
+      <span class="yt-facade__play" aria-hidden="true">
         <svg viewBox="0 0 68 48" width="68" height="48">
           <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#FF0000"/>
           <path d="M45 24L27 14v20z" fill="white"/>
         </svg>
-      </div>
-    </div>
+      </span>
+    </button>
     <iframe
       *ngIf="youtubeLoaded"
       src="https://www.youtube-nocookie.com/embed/7FW10c6iTTc?rel=0&autoplay=1"
@@ -105,22 +105,32 @@
     </div>
   </div>
 
-  <!-- Carrusel infinito -->
-  <div class="galeria-carousel">
+  <!-- Carrusel infinito: dos sets idénticos; la pista se desplaza exactamente -50% y el loop no tiene saltos -->
+  <div class="galeria-carousel" [class.galeria-carousel--paused]="carruselPausado">
     <div class="galeria-track">
-      <!-- Set original -->
-      <div class="galeria-slide" *ngFor="let foto of galeriaFotos; let i = index">
-        <img [src]="foto" [alt]="'Mariachi Michoacán Santiago - foto ' + (i+1)" width="490" height="400" />
+      <div class="galeria-set">
+        <div class="galeria-slide" *ngFor="let foto of carruselFotos; let i = index"
+             [class.galeria-slide--repeat]="i >= galeriaFotos.length">
+          <img [src]="foto"
+               [alt]="i < galeriaFotos.length ? 'Mariachi Michoacán Santiago - foto ' + (i + 1) : ''"
+               width="490" height="400" loading="lazy" decoding="async" />
+        </div>
       </div>
-      <!-- Set duplicado para loop continuo -->
-      <div class="galeria-slide" *ngFor="let foto of galeriaFotos; let i = index" aria-hidden="true">
-        <img [src]="foto" [alt]="'Mariachi Michoacán Santiago - foto ' + (i+1)" width="490" height="400" />
+      <div class="galeria-set galeria-set--clone" aria-hidden="true">
+        <div class="galeria-slide" *ngFor="let foto of carruselFotos">
+          <img [src]="foto" alt="" width="490" height="400" loading="lazy" decoding="async" />
+        </div>
       </div>
     </div>
   </div>
 
   <div class="container">
     <div class="galeria-section__cta">
+      <button type="button" class="galeria-pause" (click)="toggleCarrusel()">
+        <svg *ngIf="!carruselPausado" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+        <svg *ngIf="carruselPausado" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        {{ carruselPausado ? 'Reanudar fotos' : 'Pausar fotos' }}
+      </button>
       <a routerLink="/galeria" class="btn btn--dark">Ver galería completa</a>
     </div>
   </div>

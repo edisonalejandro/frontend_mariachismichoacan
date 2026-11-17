@@ -10,26 +10,28 @@
   <div class="container">
 
     <div class="filter-tabs">
-      <button class="filter-tab" *ngFor="let c of categorias"
+      <button type="button" class="filter-tab" *ngFor="let c of categorias"
               [class.filter-tab--active]="categoriaActiva === c"
+              [attr.aria-pressed]="categoriaActiva === c"
               (click)="setCategoria(c)">{{ c }}</button>
     </div>
 
     <div class="galeria-grid" *ngIf="filtrados.length > 0">
-      <div class="galeria-item"
-           *ngFor="let item of filtrados"
-           [class.galeria-item--featured]="item.featured"
-           (click)="openLightbox(item.src.toString())">
+      <button type="button" class="galeria-item"
+              *ngFor="let item of filtrados"
+              [class.galeria-item--featured]="item.featured"
+              [attr.aria-label]="'Ampliar foto: ' + item.titulo"
+              (click)="openLightbox(item)">
         <picture>
           <source media="(max-width: 768px)" [srcset]="getSmSrc(item.src)">
-          <img [src]="item.src" [alt]="item.titulo" loading="lazy" width="800" height="600" />
+          <img [src]="item.src" alt="" loading="lazy" width="800" height="600" />
         </picture>
-        <div class="galeria-item__overlay">
+        <span class="galeria-item__overlay" aria-hidden="true">
           <span class="galeria-item__cat">{{ item.categoria }}</span>
           <span class="galeria-item__titulo">{{ item.titulo }}</span>
           <span class="galeria-item__zoom">🔍</span>
-        </div>
-      </div>
+        </span>
+      </button>
     </div>
 
     <div class="galeria-empty" *ngIf="filtrados.length === 0">
@@ -40,8 +42,9 @@
   </div>
 </section>
 
-<!-- Lightbox -->
-<div class="lightbox" *ngIf="lightboxSrc" (click)="closeLightbox()">
-  <button class="lightbox__close" (click)="closeLightbox()">✕</button>
-  <img [src]="lightboxSrc" alt="Foto ampliada" (click)="$event.stopPropagation()" />
-</div>
+<!-- Lightbox: <dialog> nativo (atrapa el foco, cierra con Esc y devuelve el foco a la foto) -->
+<dialog #lightbox class="lightbox" aria-label="Foto ampliada"
+        (click)="onLightboxClick($event)" (close)="onLightboxClosed()">
+  <button type="button" class="lightbox__close" (click)="closeLightbox()" aria-label="Cerrar foto ampliada">✕</button>
+  <img *ngIf="lightboxFoto" [src]="lightboxFoto.src" [alt]="lightboxFoto.titulo" />
+</dialog>

@@ -1,5 +1,5 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -109,23 +109,31 @@ export class HomeComponent implements OnInit {
     },
   ];
 
+  // Cada set del carrusel repite las fotos dos veces para cubrir pantallas anchas (~4.600px por set)
+  carruselFotos = [...this.galeriaFotos, ...this.galeriaFotos];
+  carruselPausado = false;
+
   youtubeLoaded = false;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: object) {
-    if (isPlatformBrowser(this.platformId)) {
-      this.injectFaqSchema();
-    }
+  constructor(@Inject(DOCUMENT) private document: Document) {
+    // Corre también en el prerender para que el FAQPage quede en el HTML estático
+    this.injectFaqSchema();
   }
 
   ngOnInit() {}
 
   loadYoutube() { this.youtubeLoaded = true; }
 
+  toggleCarrusel() { this.carruselPausado = !this.carruselPausado; }
+
   stars(rating: number): string[] {
     return Array(5).fill('');
   }
 
   private injectFaqSchema() {
+    // Evita duplicados al volver a la home o al hidratar el HTML prerenderizado
+    if (this.document.getElementById('faq-schema')) return;
+
     const schema = {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
@@ -135,9 +143,10 @@ export class HomeComponent implements OnInit {
         acceptedAnswer: { '@type': 'Answer', text: f.a }
       }))
     };
-    const script = document.createElement('script');
+    const script = this.document.createElement('script');
+    script.id = 'faq-schema';
     script.type = 'application/ld+json';
     script.text = JSON.stringify(schema);
-    document.head.appendChild(script);
+    this.document.head.appendChild(script);
   }
 }

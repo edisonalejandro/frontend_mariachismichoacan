@@ -47,7 +47,12 @@
     height: 180px; border-radius: 20px;
     background: linear-gradient(90deg, #F3F4F6 25%, #E5E7EB 50%, #F3F4F6 75%);
     background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
+    /* Nombre fuera del @media para que Angular lo encapsule; duración solo con no-preference */
+    animation: shimmer 0s infinite;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation-duration: 1.5s;
+    }
   }
 }
 

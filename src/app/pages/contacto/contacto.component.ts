@@ -65,4 +65,10 @@ export class ContactoComponent {
   }
 
   field(form: FormGroup, name: string) { return form.get(name); }
+
+  // true cuando el campo es inválido y el usuario ya interactuó con él (o intentó enviar)
+  showError(form: FormGroup, name: string): boolean {
+    const c = form.get(name);
+    return !!c && c.invalid && c.touched;
+  }
 }

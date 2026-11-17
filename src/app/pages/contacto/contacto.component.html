@@ -15,41 +15,51 @@
         <div class="contact-card__header">
           <span class="contact-card__icon">✉️</span>
           <div>
-            <h3>Envíanos un mensaje</h3>
+            <h3 id="contact-form-title">Envíanos un mensaje</h3>
             <p>Te respondemos en menos de 24 horas</p>
           </div>
         </div>
 
-        <div class="alert alert--success" *ngIf="contactSuccess">
-          <span>✅</span> ¡Mensaje enviado! Te contactaremos pronto.
+        <div class="alert alert--success" role="status" *ngIf="contactSuccess">
+          <span aria-hidden="true">✅</span> ¡Mensaje enviado! Te contactaremos pronto.
         </div>
-        <div class="alert alert--error" *ngIf="contactError">
-          <span>⚠️</span> {{ contactError }}
+        <div class="alert alert--error" role="alert" *ngIf="contactError">
+          <span aria-hidden="true">⚠️</span> {{ contactError }}
         </div>
 
-        <form [formGroup]="contactForm" (ngSubmit)="sendContact()" *ngIf="!contactSuccess">
+        <form [formGroup]="contactForm" (ngSubmit)="sendContact()" *ngIf="!contactSuccess"
+              aria-labelledby="contact-form-title">
           <div class="form-group">
-            <label>Nombre completo *</label>
-            <input type="text" formControlName="nombre" placeholder="Tu nombre"
-              [class.error]="field(contactForm,'nombre')?.invalid && field(contactForm,'nombre')?.touched">
-            <span class="field-error" *ngIf="field(contactForm,'nombre')?.invalid && field(contactForm,'nombre')?.touched">
-              ⚠ Nombre requerido
+            <label for="contact-nombre">Nombre completo <span aria-hidden="true">*</span></label>
+            <input id="contact-nombre" type="text" formControlName="nombre" placeholder="Tu nombre"
+              autocomplete="name" required enterkeyhint="next"
+              [class.error]="showError(contactForm,'nombre')"
+              [attr.aria-invalid]="showError(contactForm,'nombre') ? 'true' : null"
+              [attr.aria-describedby]="showError(contactForm,'nombre') ? 'contact-nombre-error' : null">
+            <span id="contact-nombre-error" class="field-error" *ngIf="showError(contactForm,'nombre')">
+              ⚠ Ingresa tu nombre
             </span>
           </div>
           <div class="form-group">
-            <label>Correo electrónico *</label>
-            <input type="email" formControlName="email" placeholder="tu@correo.com"
-              [class.error]="field(contactForm,'email')?.invalid && field(contactForm,'email')?.touched">
-            <span class="field-error" *ngIf="field(contactForm,'email')?.invalid && field(contactForm,'email')?.touched">
-              ⚠ Correo inválido
+            <label for="contact-email">Correo electrónico <span aria-hidden="true">*</span></label>
+            <input id="contact-email" type="email" formControlName="email" placeholder="tu@correo.com"
+              autocomplete="email" required enterkeyhint="next"
+              [class.error]="showError(contactForm,'email')"
+              [attr.aria-invalid]="showError(contactForm,'email') ? 'true' : null"
+              [attr.aria-describedby]="showError(contactForm,'email') ? 'contact-email-error' : null">
+            <span id="contact-email-error" class="field-error" *ngIf="showError(contactForm,'email')">
+              ⚠ Ingresa un correo válido
             </span>
           </div>
           <div class="form-group">
-            <label>Mensaje *</label>
-            <textarea formControlName="mensaje" placeholder="¿En qué podemos ayudarte? Cuéntanos sobre tu evento..." rows="5"
-              [class.error]="field(contactForm,'mensaje')?.invalid && field(contactForm,'mensaje')?.touched"></textarea>
-            <span class="field-error" *ngIf="field(contactForm,'mensaje')?.invalid && field(contactForm,'mensaje')?.touched">
-              ⚠ Mínimo 10 caracteres
+            <label for="contact-mensaje">Mensaje <span aria-hidden="true">*</span> <small>(mínimo 10 caracteres)</small></label>
+            <textarea id="contact-mensaje" formControlName="mensaje" placeholder="¿En qué podemos ayudarte? Cuéntanos sobre tu evento..." rows="5"
+              required minlength="10"
+              [class.error]="showError(contactForm,'mensaje')"
+              [attr.aria-invalid]="showError(contactForm,'mensaje') ? 'true' : null"
+              [attr.aria-describedby]="showError(contactForm,'mensaje') ? 'contact-mensaje-error' : null"></textarea>
+            <span id="contact-mensaje-error" class="field-error" *ngIf="showError(contactForm,'mensaje')">
+              ⚠ Escribe al menos 10 caracteres
             </span>
           </div>
           <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center" [disabled]="loading">
@@ -65,45 +75,72 @@
         <div class="contact-card__header">
           <span class="contact-card__icon">📅</span>
           <div>
-            <h3>Solicitar reserva</h3>
+            <h3 id="booking-form-title">Solicitar reserva</h3>
             <p>Agenda tu evento directamente</p>
           </div>
         </div>
 
-        <div class="alert alert--success" *ngIf="bookingSuccess">
-          <span>✅</span> ¡Reserva registrada! Te confirmaremos pronto.
+        <div class="alert alert--success" role="status" *ngIf="bookingSuccess">
+          <span aria-hidden="true">✅</span> ¡Reserva registrada! Te confirmaremos pronto.
         </div>
-        <div class="alert alert--error" *ngIf="bookingError">
-          <span>⚠️</span> {{ bookingError }}
+        <div class="alert alert--error" role="alert" *ngIf="bookingError">
+          <span aria-hidden="true">⚠️</span> {{ bookingError }}
         </div>
 
-        <form [formGroup]="bookingForm" (ngSubmit)="sendBooking()" *ngIf="!bookingSuccess">
+        <form [formGroup]="bookingForm" (ngSubmit)="sendBooking()" *ngIf="!bookingSuccess"
+              aria-labelledby="booking-form-title">
           <div class="form-row">
             <div class="form-group">
-              <label>Nombre completo *</label>
-              <input type="text" formControlName="nombre" placeholder="Tu nombre completo">
+              <label for="booking-nombre">Nombre completo <span aria-hidden="true">*</span></label>
+              <input id="booking-nombre" type="text" formControlName="nombre" placeholder="Tu nombre completo"
+                autocomplete="name" required enterkeyhint="next"
+                [class.error]="showError(bookingForm,'nombre')"
+                [attr.aria-invalid]="showError(bookingForm,'nombre') ? 'true' : null"
+                [attr.aria-describedby]="showError(bookingForm,'nombre') ? 'booking-nombre-error' : null">
+              <span id="booking-nombre-error" class="field-error" *ngIf="showError(bookingForm,'nombre')">
+                ⚠ Ingresa tu nombre
+              </span>
             </div>
             <div class="form-group">
-              <label>Teléfono *</label>
-              <input type="tel" formControlName="telefono" placeholder="+56 9 6260 6833">
+              <label for="booking-telefono">Teléfono <span aria-hidden="true">*</span></label>
+              <input id="booking-telefono" type="tel" formControlName="telefono" placeholder="+56 9 1234 5678"
+                autocomplete="tel" required enterkeyhint="next"
+                [class.error]="showError(bookingForm,'telefono')"
+                [attr.aria-invalid]="showError(bookingForm,'telefono') ? 'true' : null"
+                [attr.aria-describedby]="showError(bookingForm,'telefono') ? 'booking-telefono-error' : null">
+              <span id="booking-telefono-error" class="field-error" *ngIf="showError(bookingForm,'telefono')">
+                ⚠ Ingresa un teléfono de contacto
+              </span>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label>Fecha del evento *</label>
-              <input type="date" formControlName="fechaEvento" [min]="today">
+              <label for="booking-fecha">Fecha del evento <span aria-hidden="true">*</span></label>
+              <input id="booking-fecha" type="date" formControlName="fechaEvento" [min]="today" required
+                [class.error]="showError(bookingForm,'fechaEvento')"
+                [attr.aria-invalid]="showError(bookingForm,'fechaEvento') ? 'true' : null"
+                [attr.aria-describedby]="showError(bookingForm,'fechaEvento') ? 'booking-fecha-error' : null">
+              <span id="booking-fecha-error" class="field-error" *ngIf="showError(bookingForm,'fechaEvento')">
+                ⚠ Elige la fecha del evento
+              </span>
             </div>
             <div class="form-group">
-              <label>Tipo de evento *</label>
-              <select formControlName="tipoEvento">
+              <label for="booking-tipo">Tipo de evento <span aria-hidden="true">*</span></label>
+              <select id="booking-tipo" formControlName="tipoEvento" required
+                [class.error]="showError(bookingForm,'tipoEvento')"
+                [attr.aria-invalid]="showError(bookingForm,'tipoEvento') ? 'true' : null"
+                [attr.aria-describedby]="showError(bookingForm,'tipoEvento') ? 'booking-tipo-error' : null">
                 <option value="">Selecciona...</option>
                 <option *ngFor="let t of tiposEvento" [value]="t">{{ t }}</option>
               </select>
+              <span id="booking-tipo-error" class="field-error" *ngIf="showError(bookingForm,'tipoEvento')">
+                ⚠ Elige el tipo de evento
+              </span>
             </div>
           </div>
           <div class="form-group">
-            <label>Detalles adicionales</label>
-            <textarea formControlName="mensaje" rows="3" placeholder="Número de invitados, lugar del evento, canciones favoritas..."></textarea>
+            <label for="booking-mensaje">Detalles adicionales</label>
+            <textarea id="booking-mensaje" formControlName="mensaje" rows="3" placeholder="Número de invitados, lugar del evento, canciones favoritas..."></textarea>
           </div>
           <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center" [disabled]="loading">
             <span *ngIf="!loading">Solicitar reserva</span>

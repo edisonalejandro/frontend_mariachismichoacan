@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 interface GaleriaItem {
   tipo: 'foto';
@@ -17,7 +17,9 @@ interface GaleriaItem {
 export class GaleriaComponent {
   categorias = ['Todos', 'Serenatas', 'Bodas', 'Cumpleaños', 'El Grupo'];
   categoriaActiva = 'Todos';
-  lightboxSrc: string | null = null;
+  lightboxFoto: GaleriaItem | null = null;
+
+  @ViewChild('lightbox') private lightbox!: ElementRef<HTMLDialogElement>;
 
   fotos: GaleriaItem[] = [
     // Serenatas
@@ -69,6 +71,17 @@ export class GaleriaComponent {
 
   getSmSrc(src: string): string { return src.replace('.webp', '-sm.webp'); }
 
-  openLightbox(src: string) { this.lightboxSrc = src; }
-  closeLightbox() { this.lightboxSrc = null; }
+  openLightbox(item: GaleriaItem) {
+    this.lightboxFoto = item;
+    this.lightbox.nativeElement.showModal();
+  }
+
+  closeLightbox() { this.lightbox.nativeElement.close(); }
+
+  // Clic fuera de la foto (sobre el fondo del dialog) cierra el lightbox
+  onLightboxClick(event: MouseEvent) {
+    if (event.target === this.lightbox.nativeElement) this.closeLightbox();
+  }
+
+  onLightboxClosed() { this.lightboxFoto = null; }
 }

@@ -121,6 +121,11 @@
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
   display: inline-block;
+
+  /* Indicador de carga: se mantiene, pero más lento */
+  @media (prefers-reduced-motion: reduce) {
+    animation-duration: 2s;
+  }
 }
 
 @keyframes spin { to { transform: rotate(360deg); } }

@@ -273,20 +273,35 @@
 
 .yt-facade {
   position: relative;
+  display: block;
+  padding: 0;
+  font: inherit;
+  color: inherit;
   cursor: pointer;
   overflow: hidden;
   background: #000;
+
+  &:focus-visible {
+    outline: 3px solid #F5C842;
+    outline-offset: 3px;
+  }
 
   &__thumb {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 300ms ease;
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition: transform 300ms ease;
+    }
   }
 
-  &:hover &__thumb {
-    transform: scale(1.03);
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover &__thumb,
+    &:focus-visible &__thumb {
+      transform: scale(1.03);
+    }
   }
 
   &__play {
@@ -300,13 +315,20 @@
 
     svg {
       filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
-      transition: transform 200ms;
+
+      @media (prefers-reduced-motion: no-preference) {
+        transition: transform 200ms;
+      }
     }
   }
 
-  &:hover &__play {
+  &:hover &__play,
+  &:focus-visible &__play {
     background: rgba(0,0,0,0.1);
-    svg { transform: scale(1.12); }
+
+    @media (prefers-reduced-motion: no-preference) {
+      svg { transform: scale(1.12); }
+    }
   }
 }
 
@@ -374,24 +396,51 @@
   .container { padding-inline: clamp(1rem, 4vw, 2rem); }
 }
 
-/* Carrusel infinito */
+/* Carrusel infinito
+   La pista contiene dos sets idénticos. Cada set termina con un padding igual al gap,
+   así -50% equivale exactamente al ancho de un set y el loop no deja huecos,
+   sin importar cuántas fotos haya. */
 .galeria-carousel {
   width: 100%;
   overflow: hidden;
   margin: 2rem 0 2.5rem;
-  cursor: grab;
 
-  &:hover .galeria-track {
+  &:hover .galeria-track,
+  &--paused .galeria-track {
     animation-play-state: paused;
+  }
+
+  /* Movimiento reducido: fila estática que se recorre deslizando */
+  @media (prefers-reduced-motion: reduce) {
+    overflow-x: auto;
+    scrollbar-width: thin;
+    padding-inline: clamp(1rem, 4vw, 2rem);
+
+    .galeria-set--clone,
+    .galeria-slide--repeat {
+      display: none;
+    }
   }
 }
 
+/* Angular solo renombra los @keyframes (encapsulación) fuera de @media anidados,
+   por eso el nombre va en la regla base con duración 0s (quieto) y el movimiento
+   se activa únicamente con prefers-reduced-motion: no-preference.
+   16 fotos × ~290px ≈ 4.640px por set; 27s mantiene la velocidad anterior (~170px/s). */
 .galeria-track {
   display: flex;
-  gap: 0.6rem;
   width: max-content;
-  will-change: transform;
-  animation: galeria-scroll 55s linear infinite;
+  animation: galeria-scroll 0s linear infinite;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation-duration: 27s;
+  }
+}
+
+.galeria-set {
+  display: flex;
+  gap: 0.6rem;
+  padding-right: 0.6rem;
 }
 
 .galeria-slide {
@@ -407,20 +456,56 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 500ms ease;
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition: transform 500ms ease;
+    }
   }
 
-  &:hover img { transform: scale(1.04); }
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover img { transform: scale(1.04); }
+  }
 }
 
-/* (280px + 0.6rem) × 33 = distancia exacta de un set completo */
 @keyframes galeria-scroll {
-  to { transform: translateX(calc((280px + 0.6rem) * -33)); }
+  to { transform: translateX(-50%); }
 }
 
 .galeria-section__cta {
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
   margin-top: 2rem;
+}
+
+.galeria-pause {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.1rem;
+  border: 1.5px solid rgba(10,10,10,0.25);
+  border-radius: 9999px;
+  background: transparent;
+  color: #1A1A1A;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 200ms, background-color 200ms;
+
+  &:hover { border-color: #C9960C; background: rgba(201,150,12,0.08); }
+
+  &:focus-visible {
+    outline: 3px solid #C9960C;
+    outline-offset: 2px;
+  }
+
+  /* Sin animación no hay nada que pausar */
+  @media (prefers-reduced-motion: reduce) {
+    display: none;
+  }
 }
 
 /* ===== PAQUETES ===== */

@@ -65,11 +65,11 @@
   border: 1.5px solid #EDE0C4;
   border-radius: 10px;
   overflow: hidden;
-  cursor: pointer;
   transition: border-color 250ms, box-shadow 250ms;
   background: #fff;
 
-  &:hover {
+  &:hover,
+  &:focus-within {
     border-color: #C9960C;
     box-shadow: 0 4px 20px rgba(201,150,12,0.12);
   }
@@ -86,12 +86,29 @@
   &--crimson { border-top: 3px solid #7B1A1A; }
   &--dark    { border-top: 3px solid #1A1A1A; }
 
+  &__heading {
+    margin: 0;
+    font: inherit;
+  }
+
   &__header {
     display: flex;
     align-items: center;
     gap: 1rem;
+    width: 100%;
     padding: 1.25rem 1.5rem;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
     user-select: none;
+
+    &:focus-visible {
+      outline: 3px solid #C9960C;
+      outline-offset: -3px;
+    }
   }
 
   &__icono {
@@ -101,11 +118,13 @@
   }
 
   &__info {
+    display: block;
     flex: 1;
     min-width: 0;
   }
 
   &__titulo {
+    display: block;
     font-family: 'Cinzel', Georgia, serif;
     font-size: 0.88rem;
     font-weight: 700;
@@ -124,14 +143,23 @@
     flex-shrink: 0;
     color: #C9960C;
 
-    svg { transition: transform 300ms ease; }
+    svg {
+      @media (prefers-reduced-motion: no-preference) {
+        transition: transform 300ms ease;
+      }
+    }
   }
 
   &__body {
     border-top: 1px solid #F0E8D8;
     padding: 1.25rem 1.5rem 1.5rem;
     background: #FDFAF5;
-    animation: fadeDown 200ms ease;
+    /* Nombre fuera del @media para que Angular lo encapsule; duración solo con no-preference */
+    animation: fadeDown 0s ease;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation-duration: 200ms;
+    }
   }
 }
 

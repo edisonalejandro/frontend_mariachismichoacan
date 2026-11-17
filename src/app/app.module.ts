@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -28,7 +28,7 @@ import { YoutubeEmbedPipe } from './pipes/youtube-embed.pipe';
     RouterModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [provideClientHydration(withEventReplay())],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

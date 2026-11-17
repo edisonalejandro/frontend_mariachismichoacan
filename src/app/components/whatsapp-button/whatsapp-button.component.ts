@@ -26,31 +26,67 @@ declare function gtag(...args: any[]): void;
   color: #fff; text-decoration: none;
   box-shadow: 0 4px 20px rgba(37,211,102,0.4);
   z-index: 9999;
-  transition: transform 250ms, box-shadow 250ms;
-  animation: wa-pulse 2.5s ease-in-out infinite;
-}
-.wa-btn:hover {
-  transform: scale(1.12);
-  box-shadow: 0 8px 30px rgba(37,211,102,0.55);
-  animation: none;
+  transition: box-shadow 250ms;
+
+  /* Anillo de pulso: anima transform + opacity (compositor), no box-shadow */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: rgba(37,211,102,0.35);
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+    /* Nombre fuera del @media para que Angular lo encapsule; duración solo con no-preference */
+    animation: wa-pulse 0s ease-out infinite;
+  }
+
+  &:hover,
+  &:focus-visible {
+    box-shadow: 0 8px 30px rgba(37,211,102,0.55);
+  }
+
+  &:focus-visible {
+    outline: 3px solid #0D0D1A;
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform 250ms, box-shadow 250ms;
+
+    &::before { animation-duration: 2.5s; }
+
+    &:hover,
+    &:focus-visible { transform: scale(1.12); }
+
+    &:hover::before,
+    &:focus-visible::before { animation: none; }
+  }
 }
 .wa-btn__tooltip {
   position: absolute; right: 68px;
   background: #0D0D1A; color: #fff;
   padding: 0.4rem 0.9rem; border-radius: 8px;
   font-size: 0.8rem; white-space: nowrap;
-  opacity: 0; transform: translateX(8px);
-  transition: all 200ms; pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms; pointer-events: none;
   &::after {
     content: ''; position: absolute;
     top: 50%; right: -6px; transform: translateY(-50%);
     border: 6px solid transparent; border-left-color: #0D0D1A;
   }
+
+  @media (prefers-reduced-motion: no-preference) {
+    transform: translateX(8px);
+    transition: opacity 200ms, transform 200ms;
+  }
 }
-.wa-btn:hover .wa-btn__tooltip { opacity: 1; transform: translateX(0); }
+.wa-btn:hover .wa-btn__tooltip,
+.wa-btn:focus-visible .wa-btn__tooltip { opacity: 1; transform: translateX(0); }
 @keyframes wa-pulse {
-  0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
-  50% { box-shadow: 0 4px 20px rgba(37,211,102,0.4), 0 0 0 10px rgba(37,211,102,0.1); }
+  0%      { transform: scale(1);    opacity: 0.7; }
+  70%, 100% { transform: scale(1.35); opacity: 0; }
 }
   `]
 })
