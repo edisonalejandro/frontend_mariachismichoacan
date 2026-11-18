@@ -69,7 +69,14 @@ export class GaleriaComponent {
 
   setCategoria(c: string) { this.categoriaActiva = c; }
 
-  getSmSrc(src: string): string { return src.replace('.webp', '-sm.webp'); }
+  // Tres tamaños por foto: -sm (490px), -md (800px) y original reducido (1600px, también para el lightbox)
+  srcsetDe(src: string): string {
+    return `${src.replace('.webp', '-sm.webp')} 490w, ${src.replace('.webp', '-md.webp')} 800w, ${src} 1600w`;
+  }
+
+  // Ancho real de cada celda según las columnas del grid (ver galeria.component.scss)
+  readonly sizesNormal = '(max-width: 420px) 100vw, (max-width: 680px) 50vw, (max-width: 1024px) 33vw, 300px';
+  readonly sizesFeatured = '(max-width: 680px) 100vw, (max-width: 1024px) 66vw, 600px';
 
   openLightbox(item: GaleriaItem) {
     this.lightboxFoto = item;

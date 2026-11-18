@@ -9,7 +9,7 @@ import { DOCUMENT } from '@angular/common';
 })
 export class HomeComponent implements OnInit {
 
-  heroPhoto = 'assets/photos/mariachi-michoacan-00.png';
+  heroPhoto = 'assets/photos/mariachi-michoacan-00.jpg';
 
   testimonials = [
     { nombre: 'Ana García',        comentario: 'Fueron increíbles en nuestra boda. Todo el mundo quedó emocionado. ¡Gracias Mariachi Michoacán!', rating: 5 },

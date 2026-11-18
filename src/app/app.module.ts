@@ -9,7 +9,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { WhatsappButtonComponent } from './components/whatsapp-button/whatsapp-button.component';
-import { DiaMamaFloatComponent } from './components/dia-mama-float/dia-mama-float.component';
 import { YoutubeEmbedPipe } from './pipes/youtube-embed.pipe';
 
 @NgModule({
@@ -19,7 +18,6 @@ import { YoutubeEmbedPipe } from './pipes/youtube-embed.pipe';
     NavbarComponent,
     FooterComponent,
     WhatsappButtonComponent,
-    DiaMamaFloatComponent,
     YoutubeEmbedPipe
   ],
   imports: [

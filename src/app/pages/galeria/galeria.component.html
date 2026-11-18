@@ -22,10 +22,10 @@
               [class.galeria-item--featured]="item.featured"
               [attr.aria-label]="'Ampliar foto: ' + item.titulo"
               (click)="openLightbox(item)">
-        <picture>
-          <source media="(max-width: 768px)" [srcset]="getSmSrc(item.src)">
-          <img [src]="item.src" alt="" loading="lazy" width="800" height="600" />
-        </picture>
+        <img [src]="item.src"
+             [attr.srcset]="srcsetDe(item.src)"
+             [attr.sizes]="item.featured ? sizesFeatured : sizesNormal"
+             alt="" loading="lazy" decoding="async" width="800" height="600" />
         <span class="galeria-item__overlay" aria-hidden="true">
           <span class="galeria-item__cat">{{ item.categoria }}</span>
           <span class="galeria-item__titulo">{{ item.titulo }}</span>

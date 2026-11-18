@@ -1,5 +1,5 @@
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -64,7 +64,6 @@ export class SeoService {
     private title: Title,
     private meta: Meta,
     private router: Router,
-    @Inject(PLATFORM_ID) private platformId: object,
     @Inject(DOCUMENT) private document: Document
   ) {}
 
@@ -97,13 +96,5 @@ export class SeoService {
     }
     link.setAttribute('href', data.canonical);
 
-    if (isPlatformBrowser(this.platformId)) {
-      (window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({
-        event: 'page_view',
-        page_path: data.canonical.replace(BASE, ''),
-        page_title: data.title,
-      });
-    }
   }
 }
