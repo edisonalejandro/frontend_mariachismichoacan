@@ -92,6 +92,10 @@ export class HomeComponent implements OnInit {
       a: 'Realizamos serenatas y shows en toda la Región Metropolitana de Santiago de Chile, incluyendo comunas como Providencia, Las Condes, Ñuñoa, La Florida, Maipú, Pudahuel, entre otras.'
     },
     {
+      q: '¿Atienden de noche o para el mismo día?',
+      a: 'Sí, atendemos las 24 horas, los 7 días de la semana, incluidas serenatas de madrugada y de último minuto. Escríbenos por WhatsApp al +56 9 6260 6833 y te confirmamos disponibilidad lo antes posible.'
+    },
+    {
       q: '¿Con cuánta anticipación debo contratar el mariachi?',
       a: 'Recomendamos contactarnos con al menos 24 horas de anticipación, aunque hacemos lo posible por atender solicitudes de último momento. Para fechas especiales como San Valentín o fiestas patrias, reserva con más tiempo.'
     },

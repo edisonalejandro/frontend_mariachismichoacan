@@ -16,7 +16,7 @@ const BASE = 'https://mariachismichoacan.cl';
 const PAGE_META: Record<string, PageMeta> = {
   '/': {
     title: 'Mariachi Michoacán | Mariachis en Santiago de Chile ☎ +56 9 6260 6833',
-    description: 'Mariachi Michoacán — el mejor grupo de mariachis en Santiago de Chile. Serenatas, bodas, cumpleaños y eventos desde $45.000. Transporte incluido. ¡Llámanos!',
+    description: 'Mariachi Michoacán — mariachis en Santiago de Chile las 24 horas. Serenatas, bodas, cumpleaños y eventos desde $45.000. Transporte incluido. ¡Llámanos!',
     keywords: 'mariachis santiago de chile, mariachi santiago, serenata mariachi santiago, mariachi chile, grupo mariachi santiago',
     canonical: `${BASE}/`,
   },

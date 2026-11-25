@@ -132,7 +132,7 @@
 
 .contact-info-bar {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1rem;
   padding: 2rem;
   background: #F7F4EE;
@@ -166,7 +166,7 @@
     gap: 0.1rem;
     min-width: 0;
     strong { font-size: 0.85rem; color: #0D0D1A; }
-    span { font-size: 0.8rem; color: #9CA3AF; overflow-wrap: break-word; word-break: break-all; }
+    span { font-size: 0.8rem; color: #9CA3AF; overflow-wrap: anywhere; }
   }
 }
 
